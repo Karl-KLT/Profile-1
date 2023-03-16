@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use Illuminate\Support\Facades\URL;
+use URL;
 
 if(env('APP_ENV') == 'production') {
     URL::forceScheme('https');

@@ -34,7 +34,7 @@
                                 <h4 class="fw-bold " style="letter-spacing: 1px;">
                                     <div v-if="user.type == 1">
                                         <div class="flex align-items-center">
-                                            <i class='bx bxs-user-rectangle'></i>
+                                            <i class='bx bxs-user-rectangle mb-1' title="Admin"></i>
                                             <span>{{ user.name }}</span>
                                         </div>
                                     </div>
@@ -96,9 +96,19 @@
 
         methods: {
             getUser(){
+                if(this.$cookies.get('XSRF-TOKEN-REMEMBER-ME')){
+                    this.$store.dispatch('setToken',this.$cookies.get('XSRF-TOKEN-REMEMBER-ME'));
+                    this.$store.dispatch('setAuth',true);
+                    this.getRequest()
+                }else{
+                    this.getRequest()
+                }
+            },
+
+            getRequest(){
                 axios.post('/api/Auth/me',null,{
                     headers:{
-                        Authorization:this.$store.state.token
+                        Authorization:'bearer ' + this.$store.state.token
                     }
                 })
                 .then((res)=>{

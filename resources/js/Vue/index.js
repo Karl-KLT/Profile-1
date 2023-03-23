@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
-
+import VueCookies from 'vue-cookies'
 import App from './App/App.vue'
 
 import Router from './Router/index.js'
@@ -43,4 +43,4 @@ var store = createStore({
     }
 })
 
-createApp(App).use(Router).use(store).mount('#App')
+createApp(App).use(Router).use(store).use(VueCookies).mount('#App')

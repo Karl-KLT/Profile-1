@@ -60,6 +60,7 @@
                         style="height: auto;max-height: 245px; overflow: auto;">
 
                         <!-- <livewire:skills /> -->
+                        <Skills></Skills>
 
                     </div>
                 </div>
@@ -218,69 +219,72 @@
 
 
 <script>
-import { computed } from '@vue/reactivity'
-import axios from 'axios'
-export default {
-    name: 'Profile',
-    data() {
-        return {
-            user:computed(()=>this.$store.state.User),
-            loading:false,
+    import { computed } from '@vue/reactivity'
+    import axios from 'axios'
+    import Skills from './Skills.vue'
+    export default {
+        name: 'Profile',
+        data() {
+            return {
+                user:computed(()=>this.$store.state.User),
+                loading:false,
 
-            previewImage:null,
+                previewImage:null,
 
-            messageSuccessfully:null,
-            messageFailed:null
-        }
-    },
-
-    methods: {
-        updateData(){
-            this.loading = true
-            axios.post('/api/Auth/updateOrCreate',this.user,{
-                headers:{
-                    'Content-Type':'multipart/form-data',
-                }
-            })
-            .then((res)=>{
-                this.removeMessages()
-                this.messageSuccessfully = res.data.message
-                setTimeout(() => {
-                    this.messageSuccessfully = null
-                }, 5000);
-                this.loading = false
-            })
-            .catch((err)=>{
-                this.removeMessages()
-                this.messageFailed = err.response.data.error
-                setTimeout(() => {
-                    this.messageFailed = null
-                }, 5000);
-                this.loading = false
-            })
-        },
-
-        selectPhoto(){
-            var element = document.createElement('input')
-            element.type = 'file'
-            element.accept = 'image/,.jpg,.png,.jpeg'
-            element.click()
-            element.onchange = (self)=>{
-                var file = self.target.files[0]
-                this.previewImage = URL.createObjectURL(file)
-                this.user.image = file
+                messageSuccessfully:null,
+                messageFailed:null
             }
-            // var reader = new FileReader();
-            // reader.onload = function (e) {
-            //     document.getElementById('img').src = e.target.result
-            // }
-            // reader.readAsDataURL(input.files[0]);
         },
 
-        removeMessages(){
-            this.messageSuccessfully = null
-            this.messageFailed = null
-        }
-    },
-}
+        methods: {
+            updateData(){
+                this.loading = true
+                axios.post('/api/Auth/updateOrCreate',this.user,{
+                    headers:{
+                        'Content-Type':'multipart/form-data',
+                    }
+                })
+                .then((res)=>{
+                    this.removeMessages()
+                    this.messageSuccessfully = res.data.message
+                    setTimeout(() => {
+                        this.messageSuccessfully = null
+                    }, 5000);
+                    this.loading = false
+                })
+                .catch((err)=>{
+                    this.removeMessages()
+                    this.messageFailed = err.response.data.error
+                    setTimeout(() => {
+                        this.messageFailed = null
+                    }, 5000);
+                    this.loading = false
+                })
+            },
+
+            selectPhoto(){
+                var element = document.createElement('input')
+                element.type = 'file'
+                element.accept = 'image/,.jpg,.png,.jpeg'
+                element.click()
+                element.onchange = (self)=>{
+                    var file = self.target.files[0]
+                    this.previewImage = URL.createObjectURL(file)
+                    this.user.image = file
+                }
+                // var reader = new FileReader();
+                // reader.onload = function (e) {
+                //     document.getElementById('img').src = e.target.result
+                // }
+                // reader.readAsDataURL(input.files[0]);
+            },
+
+            removeMessages(){
+                this.messageSuccessfully = null
+                this.messageFailed = null
+            }
+        },
+
+        components:{Skills}
+    }
 </script>

@@ -15,7 +15,15 @@
             </div>
 
             <div class="mt-2">
-                <div class="flex justify-content-end me-2">
+                <div class="flex justify-content-between align-items-center me-2">
+                    <div class="ms-2">
+                        <div class="d-flex form-check align-items-center">
+                            <input v-model="remember_me" type="checkbox" class="form-check-input">
+                            <b class="ms-1">
+                                remember me
+                            </b>
+                        </div>
+                    </div>
 
                     <button @click="Login" type="button" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
                         <div v-if="loading">
@@ -47,7 +55,9 @@
                 email:null,
                 password:null,
 
-                loading:false
+                loading:false,
+
+                remember_me:false
             }
         },
 
@@ -59,10 +69,14 @@
                     password:this.password
                 })
                 .then((res)=>{
-                    this.$store.dispatch('setToken',`${res.data.token_type} ${res.data.access_token}`);
+                    if(this.remember_me){
+                        this.$cookies.set('XSRF-TOKEN-REMEMBER-ME',res.data.access_token,res.data.expires_in)
+                    }
+                    this.$store.dispatch('setToken',res.data.access_token);
                     this.$store.dispatch('setAuth',true);
                     this.$router.push({name:'Home'})
                 })
+                // .catch((err)=>{console.log(err)})
 
             }
         }

@@ -15,20 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware'=>'api'],function(){
-
-    Route::prefix('Auth')->group(function(){
-
-        Route::post('/login','AuthController@login');
 
 
-        Route::post('/updateOrCreate','AuthController@updateOrCreate');
+Route::prefix('Auth')->group(function(){
 
-        Route::post('/me','AuthController@me');
+    Route::post('/login','AuthController@login');
 
-    });
+    Route::post('/updateOrCreate','AuthController@updateOrCreate');
+
+    Route::post('/me','AuthController@me');
 
 });
+
+Route::prefix('Skills')->namespace('Clients')->group(function(){
+
+    Route::get('getList','SkillsController@getList');
+
+    Route::post('updateOrCreate','SkillsController@updateOrCreate');
+
+});
+
 
 
 

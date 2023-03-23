@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use URL;
+use URL as FacadesURL;
 
 if(env('APP_ENV') == 'production') {
-    URL::forceScheme('https');
+
+    FacadesURL::forceScheme('https');
 }
 
 Route::get('/', function () {

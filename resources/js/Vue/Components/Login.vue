@@ -18,12 +18,12 @@
                 <div class="flex justify-content-end me-2">
 
                     <button @click="Login" type="button" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
-                        <div>
+                        <div v-if="loading">
+                            <div class="spinner-border"></div>
+                        </div>
+                        <div v-else>
                             SignIn
                         </div>
-                        <!-- <div>
-                            <div class="spinner-border"></div>
-                        </div> -->
                     </button>
 
                     <!-- <a href="" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
@@ -45,20 +45,22 @@
         data() {
             return {
                 email:null,
-                password:null
+                password:null,
+
+                loading:false
             }
         },
 
         methods: {
             Login(){
-
+                this.loading = true
                 axios.post('/api/Auth/login',{
                     email:this.email,
                     password:this.password
                 })
                 .then((res)=>{
                     this.$store.dispatch('setToken',`${res.data.token_type} ${res.data.access_token}`);
-                    this.$store.dispatch('setAuth');
+                    this.$store.dispatch('setAuth',true);
                     this.$router.push({name:'Home'})
                 })
 

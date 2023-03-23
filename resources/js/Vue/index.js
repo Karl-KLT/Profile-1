@@ -19,8 +19,8 @@ var store = createStore({
             context.commit('setToken',token)
         },
 
-        setAuth(context){
-            context.commit('setAuth',true)
+        setAuth(context,key){
+            context.commit('setAuth',key)
         },
 
         setUser(context,User){

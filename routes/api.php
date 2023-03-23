@@ -21,13 +21,14 @@ Route::group(['middleware'=>'api'],function(){
 
         Route::post('/login','AuthController@login');
 
+
+        Route::post('/updateOrCreate','AuthController@updateOrCreate');
+
         Route::post('/me','AuthController@me');
 
     });
 
 });
 
-Route::get('/dummyUser',function(){
-    return User::all()->first();
-});
+
 

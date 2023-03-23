@@ -12,16 +12,21 @@ class AuthController extends Controller
     public function __construct(AuthService $AuthService)
     {
         $this->AuthService = $AuthService;
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','updateOrCreate']]);
     }
 
     public function login()
     {
-        return response()->json($this->AuthService->login(),200);
+        return $this->AuthService->login();
+    }
+
+    public function updateOrCreate()
+    {
+        return $this->AuthService->updateOrCreate();
     }
 
     public function me()
     {
-        return response()->json(['data'=>$this->AuthService->me(),'status'=>200,'message'=>'successfully'],200);
+        return $this->AuthService->me();
     }
 }

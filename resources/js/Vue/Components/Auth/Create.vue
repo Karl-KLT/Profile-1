@@ -1,7 +1,7 @@
 <template>
 
     <div class="pt-3 font-bold">
-        <h4 style="text-decoration: underline;letter-spacing: 1px">Login</h4>
+        <h4 style="text-decoration: underline;letter-spacing: 1px">Create</h4>
     </div>
 
     <div class="mt-3">
@@ -18,6 +18,13 @@
                 <input type="password" v-model="password" autocomplete="off" class="form-control" placeholder="Password . . ." required>
             </div>
 
+            <!-- error messages -->
+            <div v-if="messageFailed" class="alert alert-danger my-2">
+                <ul v-for="message in messageFailed">
+                    <li>{{ message[0] }}</li>
+                </ul>
+            </div>
+            <!-- ///////////////////// -->
             <div class="mt-2 d-flex justify-content-end">
                 <div class="flex justify-content-between align-items-center me-2">
                     <button @click="singUp" type="button" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
@@ -52,6 +59,7 @@
                 password:null,
 
                 loading:false,
+                messageFailed:null
             }
         },
 
@@ -64,11 +72,10 @@
                     password:this.password
                 })
                 .then((res)=>{
-                    console.log(res.data)
                     this.loading = false
                     this.$router.push({name:'Login'})
                 }).catch((err)=>{
-                    console.log(err.response.data)
+                    this.messageFailed = err.response.data.error
                     this.loading = false
                 })
                 // .catch((err)=>{console.log(err)})

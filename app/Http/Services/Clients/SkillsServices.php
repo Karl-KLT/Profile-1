@@ -23,5 +23,10 @@ class SkillsServices
         return $this->SkillsRepository->updateOrCreate();
     }
 
+    public function destroy()
+    {
+        return $this->SkillsRepository->destroy();
+    }
+
 
 }

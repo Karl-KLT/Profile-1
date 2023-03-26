@@ -24,4 +24,9 @@ class SkillsController extends Controller
     {
         return $this->SkillsServices->updateOrCreate();
     }
+
+    public function destroy()
+    {
+        return $this->SkillsServices->destroy();
+    }
 }

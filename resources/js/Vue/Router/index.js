@@ -1,7 +1,8 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
 import Home from '../Components/Home.vue'
-import Login from '../Components/Login.vue'
+import Login from '../Components/Auth/Login.vue'
+import Create from '../Components/Auth/Create.vue'
 import Profile from '../Components/Profile.vue'
 var routes = [
 
@@ -18,10 +19,17 @@ var routes = [
     },
 
     {
+        path: '/Login/Create',
+        name: 'CreateUser',
+        component: Create,
+    },
+
+    {
         path: '/Profile',
         name: 'Profile',
         component: Profile
-    }
+    },
+
 
 ]
 

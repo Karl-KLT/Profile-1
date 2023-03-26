@@ -25,14 +25,21 @@
                         </div>
                     </div>
 
-                    <button @click="Login" type="button" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
-                        <div v-if="loading">
-                            <div class="spinner-border"></div>
-                        </div>
-                        <div v-else>
-                            SignIn
-                        </div>
-                    </button>
+                    <div>
+                        <RouterLink :to="{name:'CreateUser'}" type="button" class="btn btn-outline-dark fw-bold me-2" style="letter-spacing: 1px">
+                            CreateUser
+                        </RouterLink>
+
+                        <button @click="Login" type="button" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
+                            <div v-if="loading">
+                                <div class="spinner-border"></div>
+                            </div>
+                            <div v-else>
+                                SignIn
+                            </div>
+                        </button>
+
+                    </div>
 
                     <!-- <a href="" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
                         <div>

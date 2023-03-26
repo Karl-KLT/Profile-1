@@ -49,7 +49,7 @@ class AuthRepository
                 $user->image = $this->UploaderServices->upload(request()->file('image'),'UserProfiles');
             }
 
-            $user->save();
+            $user->update();
 
 
             if(request()->id){

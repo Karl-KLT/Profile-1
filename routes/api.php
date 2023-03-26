@@ -33,6 +33,8 @@ Route::prefix('Skills')->namespace('Clients')->group(function(){
 
     Route::post('updateOrCreate','SkillsController@updateOrCreate');
 
+    Route::post('destroy','SkillsController@destroy');
+
 });
 
 

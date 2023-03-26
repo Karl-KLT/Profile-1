@@ -16,11 +16,11 @@
                             </span>
                             <!-- delete if skill for owner -->
 
-                            <!-- <span class="ms-2">
-                                <form wire:submit.prevent="remove({{ $skill->id }})">
+                            <span class="ms-2">
+                                <div @click="remove(skill.id)">
                                     <button type="submit" style="outline: none" class="hover:text-red-400"><i class='bx bxs-message-square-x'></i></button>
-                                </form>
-                            </span> -->
+                                </div>
+                            </span>
                         </div>
                         <div style="display: flex;width: 100%;height: 10px;">
                             <div class="badge bg-secondary w-100 p-0">
@@ -166,6 +166,18 @@
         },
 
         methods: {
+
+            remove(id){
+                axios.post('api/Skills/destroy',{
+                    id:id
+                },{headers:{'Authorization': 'bearer '+this.$store.state.token}}).then((res)=>{
+                    this.$emit('message',res.data)
+                    window.location.reload()
+                }).catch((err)=>{
+                    this.$emit('message',err.response.data)
+                })
+            },
+
             save(){
                 this.loading = true;
                 axios.post('api/Skills/updateOrCreate',{

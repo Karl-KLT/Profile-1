@@ -25,7 +25,8 @@ var store = createStore({
 
         setUser(context,User){
             context.commit('setUser',User)
-        }
+        },
+
     },
 
     mutations:{
@@ -39,8 +40,8 @@ var store = createStore({
 
         setUser(state,payload = false){
             state.User = payload
-        }
+        },
     }
 })
-
 createApp(App).use(Router).use(store).use(VueCookies).mount('#App')
+

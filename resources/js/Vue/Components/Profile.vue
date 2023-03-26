@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="row rounded">
-
+            <div class="pt-3 font-bold">
+                <h4 style="text-decoration: underline;letter-spacing: 1px">Profile</h4>
+            </div>
             <div class="col-md-6 flex justify-content-between align-items-center">
 
                 <div>
@@ -60,8 +62,7 @@
                         style="height: auto;max-height: 245px; overflow: auto;">
 
                         <!-- <livewire:skills /> -->
-                        <Skills></Skills>
-
+                        <Skills @message="eventMessage($event)"></Skills>
                     </div>
                 </div>
             </div>
@@ -232,11 +233,22 @@
                 previewImage:null,
 
                 messageSuccessfully:null,
-                messageFailed:null
+                messageFailed:null,
             }
         },
 
         methods: {
+            eventMessage(event){
+                if(event.status == 200){
+                    this.messageSuccessfully = event.message
+                }else{
+                    this.messageFailed = event.error
+                }
+                setTimeout(() => {
+                    this.removeMessages()
+                }, 5000);
+            },
+
             updateData(){
                 this.loading = true
                 axios.post('/api/Auth/updateOrCreate',this.user,{
@@ -284,7 +296,7 @@
                 this.messageFailed = null
             }
         },
+        components:{Skills},
 
-        components:{Skills}
     }
 </script>

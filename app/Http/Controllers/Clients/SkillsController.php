@@ -12,6 +12,7 @@ class SkillsController extends Controller
     public function __construct(SkillsServices $SkillsServices)
     {
         $this->SkillsServices = $SkillsServices;
+        $this->middleware('auth:api');
     }
 
     public function getList()

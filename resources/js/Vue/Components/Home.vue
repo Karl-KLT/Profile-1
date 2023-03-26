@@ -98,7 +98,6 @@
             getUser(){
                 if(this.$cookies.get('XSRF-TOKEN-REMEMBER-ME')){
                     this.$store.dispatch('setToken',this.$cookies.get('XSRF-TOKEN-REMEMBER-ME'));
-                    this.$store.dispatch('setAuth',true);
                     this.getRequest()
                 }else{
                     this.getRequest()
@@ -113,6 +112,11 @@
                 })
                 .then((res)=>{
                     this.$store.dispatch('setUser',res.data.data);
+                    this.$store.dispatch('setAuth',true);
+                }).catch((error)=>{
+                    if(error.response.status == 401){
+                        this.$store.dispatch('setAuth',false);
+                    }
                 })
             }
         },

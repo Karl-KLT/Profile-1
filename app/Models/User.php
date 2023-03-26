@@ -54,7 +54,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return collect(parent::toArray())->merge([
             'created_at' => Carbon::create($this->created_at)->diffForHumans(null,null,true,1),
-            'updated_at' => Carbon::create($this->updated_at)->diffForHumans(null,null,true,1)
+            'updated_at' => Carbon::create($this->updated_at)->diffForHumans(null,null,true,1),
+            'Skills' => $this->skills
         ]);
     }
 

@@ -1,12 +1,12 @@
 <template>
-    <div class="l-navbar" id="nav-bar">    
+    <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
                 <router-link :to="{ name:'Home' }" class="nav_logo">
                     <i class='bx bx-layer nav_logo-icon'></i>
                     <span class="nav_logo-name"></span>
                 </router-link>
-    
+
                 <div class="nav_list">
 
 
@@ -20,13 +20,21 @@
                         <span class="nav_name" style="font-weight: bold">Login</span>
                     </router-link>
 
+
+                    <!-- if login -->
+
                     <router-link :to="{ name:'Profile' }" class="nav_link" v-if="loggedIn" active-class="active">
                         <i class='bx bxs-user-rectangle'></i>
                         <span class="nav_name" style="font-weight: bold">Profile</span>
                     </router-link>
-    
+
+                    <a  class="nav_link" @click="logOut" style="cursor: pointer;" v-if="loggedIn">
+                        <i class='bx bxs-log-out'></i>
+                        <span class="nav_name" style="font-weight: bold">logOut</span>
+                    </a>
+
                 </div>
-    
+
             </div>
         </nav>
     </div>
@@ -39,12 +47,22 @@
 
     export default {
         name:'sideBar',
-        
+
         data() {
             return {
                 loggedIn:computed(()=>this.$store.state.authenticated)
             }
         },
-        
+
+        methods: {
+            logOut(){
+                this.$cookies.remove('XSRF-TOKEN-REMEMBER-ME')
+                this.$store.state.token = null
+                this.$store.state.User = null
+                this.$store.state.authenticated = false
+                this.$router.push({name:'Home'})
+            }
+        },
+
     }
 </script>

@@ -3,7 +3,6 @@ import { createWebHistory, createRouter } from 'vue-router'
 import Home from '../Components/Home.vue'
 import Login from '../Components/Login.vue'
 import Profile from '../Components/Profile.vue'
-
 var routes = [
 
     {
@@ -23,7 +22,7 @@ var routes = [
         name: 'Profile',
         component: Profile
     }
-    
+
 ]
 
 

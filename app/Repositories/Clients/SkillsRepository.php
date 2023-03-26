@@ -21,17 +21,17 @@ class SkillsRepository
         ]);
 
         if($validation->fails()){
-            return response()->json(['message'=>'validate error','error'=>$validation->getMessageBag()]);
+            return response()->json(['message'=>'validate error','error'=>$validation->getMessageBag(),'status'=>500],500);
         }
 
         try{
-            User::find(auth('api')->user()->id)->skills()->updateOrCreate(['id'=>request()->id],request()->all());
+            $skill = User::find(auth('api')->user()->id)->skills()->updateOrCreate(['id'=>request()->id],request()->all());
 
             if(request()->id){
-                return response()->json(['message'=>'skill has been updated']);
+                return response()->json(['data'=>$skill,'message'=>'skill has been updated','status'=>200]);
             }
 
-            return response()->json(['message'=>'skill has been created']);
+            return response()->json(['data'=>$skill,'message'=>'skill has been created','status'=>200]);
         }catch(Throwable $e){
             return response()->json(['message'=>'smth has wrong','error'=>$e]);
         }

@@ -79,6 +79,7 @@
                     if(this.remember_me){
                         this.$cookies.set('XSRF-TOKEN-REMEMBER-ME',res.data.access_token,res.data.expires_in)
                     }
+                    
                     this.$store.dispatch('setToken',res.data.access_token);
                     this.$store.dispatch('setAuth',true);
                     this.$router.push({name:'Home'})

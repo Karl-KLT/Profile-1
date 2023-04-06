@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Events\sendVerifyCodeEvent;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,6 +64,53 @@ class AuthRepository
             return response()->json(['status'=>500,'message'=>'failed','error'=>$e],500);
         }
     }
+
+    public function sendVerifyCode()
+    {
+        $validation = Validator::make(request()->all(),[
+            'email' => ['required','email','regex:/.*@(gmail).com/']
+        ]);
+
+        if($validation->fails()){
+            return response()->json(['error'=>$validation->getMessageBag(),'message'=>'validation failed'],500);
+        }
+
+
+        return response()->json(event(new sendVerifyCodeEvent(request()->email))[0]);
+    }
+
+    public function checkVerifyCode()
+    {
+        $validation = Validator::make(request()->all(),[
+            'email' => ['required','email','regex:/.*@(gmail).com/'],
+            'code' => ['required']
+        ]);
+
+        if($validation->fails()){
+            return response()->json(['error'=>$validation->getMessageBag(),'message'=>'validation failed'],500);
+        }
+
+        try{
+            $User = User::where('email',request()->email)->first() ?: null;
+
+            if(!$User){
+                return response()->json(['status'=>200,'message'=>'account has not found']);
+            }
+
+            if(request()->code == $User->email_active_code){
+                $User->email_active_code = null;
+                $User->email_verified_at = now();
+                $User->update();
+                return response()->json(['status'=>200,'message'=>'account has been verified']);
+            }
+
+            return response()->json(['status'=>500,'message'=>'something went wrong with code, try again'],500);
+
+        }catch(Throwable $e){
+            return $e;
+        }
+    }
+
 
     public function me()
     {

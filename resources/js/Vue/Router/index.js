@@ -4,6 +4,7 @@ import Home from '../Components/Home.vue'
 import Login from '../Components/Auth/Login.vue'
 import Create from '../Components/Auth/Create.vue'
 import Profile from '../Components/Profile.vue'
+import VerifyEmail from '../Components/Auth/VerificationEmails/VerifyEmail.vue'
 var routes = [
 
     {
@@ -27,8 +28,14 @@ var routes = [
     {
         path: '/Profile',
         name: 'Profile',
-        component: Profile
+        component: Profile,
     },
+
+    {
+        path: '/VerifyEmail',
+        name: 'VerifyEmail',
+        component: VerifyEmail
+    }
 
 
 ]

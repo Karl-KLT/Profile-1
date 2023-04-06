@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::create([
-            'name' => 'Karl',
-            'email' => 'test@test.com',
-            'bio' => 'this is my bio :)',
+            'name' => 'Karl Daniel',
+            'email' => 'mohameddtrsuc9x@gmail.com',
+            'bio' => 'ղօ օղҽ αskҽժ ตҽ αճօմԵ ตվ síԵմαԵíօղ✌️💔,𝖔𝖗 𝖆𝖘𝖐𝖊𝖉 𝖆𝖇𝖔𝖚𝖙 𝖒𝖊💔👍',
             'country' => 'egypt',
-            'type' => UserType::CLIENT,
+            'type' => UserType::SUPER_ADMIN,
             'message' => "Hello👋 , I appreciate that you are looking at my small site that I've made, anyway this is just an profile image of me just explaining about myself, and I hope that we will be friends.",
             'image' => null,
-            'password' => Hash::make('test@test.com')
+            'password' => Hash::make('Hcode0110_Karl')
         ]);
     }
 }

@@ -21,7 +21,7 @@
                 </div>
                 <div class="row mb-3">
 
-                    <div class="col-md-6 mt-4">
+                    <div :class="(user.Skills ? 'col-md-6' : 'col-md-12')+' mt-4'">
 
                         <div id="prof" class="d-flex p-2 firstBox container-fluid justify-content-start w-100 align-items-center">
 
@@ -61,10 +61,10 @@
 
                     </div>
 
-                    <div class="col-md-6 mt-4">
+                    <div v-if="user.Skills" class="col-md-6 mt-4">
                         <div style="user-select: none;" class="d-flex p-2 firstBox container-fluid justify-content-start w-100 align-items-center">
                             <div class="w-100 @auth py-2 @endauth" id="scroll_skills" style="height: auto;max-height: 245px; overflow: auto;">
-                                <!-- <livewire:skills USER_SID='{{ $user->USER_SID }}'/> -->
+                                <Skills></Skills>
                             </div>
                         </div>
                     </div>
@@ -83,6 +83,7 @@
 
 <script>
     import { computed } from '@vue/reactivity';
+    import Skills from '../Components/Skills.vue'
     import axios from 'axios'
 
     export default {
@@ -111,8 +112,17 @@
                     }
                 })
                 .then((res)=>{
-                    this.$store.dispatch('setUser',res.data.data);
-                    this.$store.dispatch('setAuth',true);
+
+                    if(!res.data.data.email_verified_at){
+                        this.$store.dispatch('setAuth',false);
+                        this.$store.dispatch('setUser',{'email': res.data.data.email});
+                        this.$router.push({ name: 'VerifyEmail' })
+
+                    }else{
+                        this.$store.dispatch('setAuth',true);
+                        this.$store.dispatch('setUser',res.data.data);
+                    }
+
                 }).catch((error)=>{
                     if(error.response.status == 401){
                         this.$store.dispatch('setAuth',false);
@@ -123,6 +133,7 @@
 
         beforeMount(){
             this.getUser()
-        }
+        },
+        components:{Skills}
     }
 </script>

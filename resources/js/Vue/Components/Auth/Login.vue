@@ -82,6 +82,8 @@
                     this.$store.dispatch('setToken',res.data.access_token);
                     this.$store.dispatch('setAuth',true);
                     this.$router.push({name:'Home'})
+                }).catch((err)=>{
+                    console.log(err.response.data.error)
                 })
                 // .catch((err)=>{console.log(err)})
 

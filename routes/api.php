@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\sendVerifyCodeEvent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,17 @@ Route::prefix('Auth')->group(function(){
     Route::post('/updateOrCreate','AuthController@updateOrCreate');
 
     Route::post('/me','AuthController@me');
+
+
+    Route::prefix('Verifications')->group(function(){
+        Route::post('sendVerifyCode','AuthController@sendVerifyCode');
+
+
+        Route::post('checkVerifyCode','AuthController@checkVerifyCode');
+        // Route::post('checkCode',function(){
+
+        // });
+    });
 
 });
 

@@ -17,7 +17,7 @@ class SkillsRepository
     public function updateOrCreate()
     {
         $validation = Validator::make(request()->all(),[
-            'name'=>'required|unique:skills,name,'.request()->id,
+            'name'=>'required',
             'count' => 'required|max:100|numeric'
         ]);
 

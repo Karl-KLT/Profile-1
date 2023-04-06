@@ -191,7 +191,7 @@
                     this.count = null;
                     this.loading = false;
                 }).catch((err)=>{
-                    this.$emit('message',err.response.data),
+                    this.$emit('message',err.response.data)
                     this.loading = false
                 })
             }

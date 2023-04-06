@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\sendVerifyCodeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('Home');
 
-
+// Route::get('/view_verificationEmail', function () {
+//     return new sendVerifyCodeMail('0000','Karl');
+// });
 
 Route::fallback(function(){return redirect(route('Home'));});

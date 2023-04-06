@@ -4,7 +4,7 @@
             <div>
                 <router-link :to="{ name:'Home' }" class="nav_logo">
                     <i class='bx bx-layer nav_logo-icon'></i>
-                    <span class="nav_logo-name"></span>
+                    <span class="nav_logo-name">ProfileBank</span>
                 </router-link>
 
                 <div class="nav_list">

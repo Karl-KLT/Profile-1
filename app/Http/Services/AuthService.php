@@ -23,6 +23,16 @@ class AuthService
         return $this->AuthRepository->updateOrCreate();
     }
 
+    public function sendVerifyCode()
+    {
+        return $this->AuthRepository->sendVerifyCode();
+    }
+
+    public function checkVerifyCode()
+    {
+        return $this->AuthRepository->checkVerifyCode();
+    }
+
     public function me()
     {
         return $this->AuthRepository->me();

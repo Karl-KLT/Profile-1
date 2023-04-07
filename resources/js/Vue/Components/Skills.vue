@@ -8,7 +8,7 @@
                     <div class="Box container-fluid navbar mt-2" :id="skill.id">
 
                         <div style="letter-spacing: 0.8px;font-weight: bold;">
-                            {{ skill.name  }}
+                            {{ skill.name.substr(0,1).toUpperCase() + skill.name.substr(1,Infinity) }}
                         </div>
                         <div class="flex text-secondary" style="font-weight: bold;">
                             <span>

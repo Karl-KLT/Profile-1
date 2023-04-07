@@ -2,25 +2,26 @@
 
 namespace App\Http\Services;
 
+use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 class UploaderServices
 {
     public function upload(UploadedFile $file, $folder)
     {
         $date_path = date("Y") . '/' . date("m") . '/' . date("d") . '/';
-        $path = public_path() . '/assets/uploads/' . $folder . '/' . $date_path;
+        $path = '/assets/uploads/' . $folder . '/' . $date_path;
 
-        if (!File::exists($path)) {
-            File::makeDirectory($path, 0777, true);
-        }
-
+        // if (!File::exists($path)) {
+        //     File::makeDirectory($path, 0777, true);
+        // }
         $file_name = date('YmdHis') . mt_rand() . '_' . $folder . '.' . $file->getClientOriginalExtension();
 
-        if ($file->move($path, $file_name)) {
-            return '/assets/uploads/' . $folder . '/' . $date_path . $file_name;
+        if (Storage::putFileAs($path,$file,$file_name)) {
+            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addDay());
         }
-
     }
 
     /**

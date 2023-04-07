@@ -4,7 +4,8 @@ use App\Events\sendVerifyCodeEvent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Storage;
+use App\Http\Services\UploaderServices;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,7 +49,3 @@ Route::prefix('Skills')->namespace('Clients')->group(function(){
     Route::post('destroy','SkillsController@destroy');
 
 });
-
-
-
-

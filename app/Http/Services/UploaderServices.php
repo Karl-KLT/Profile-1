@@ -17,7 +17,7 @@ class UploaderServices
         $file_name = date('YmdHis') . mt_rand() . '_' . $folder . '.' . $file->getClientOriginalExtension();
 
         if (Storage::putFileAs($path,$file,$file_name)) {
-            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS',1)));
+            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . '/' . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS',1)));
         }
     }
 

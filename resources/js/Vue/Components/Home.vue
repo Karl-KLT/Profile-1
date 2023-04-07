@@ -63,7 +63,7 @@
 
                     <div v-if="user.Skills" class="col-md-6 mt-4">
                         <div style="user-select: none;" class="d-flex p-2 firstBox container-fluid justify-content-start w-100 align-items-center">
-                            <div class="w-100 @auth py-2 @endauth" id="scroll_skills" style="height: auto;max-height: 245px; overflow: auto;">
+                            <div class="w-100 py-2" id="scroll_skills" style="height: auto;max-height: 245px; overflow: auto;">
                                 <Skills></Skills>
                             </div>
                         </div>

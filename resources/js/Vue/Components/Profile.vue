@@ -58,7 +58,7 @@
             <div class="col-md-6 my-3">
                 <div style="user-select: none;"
                     class="d-flex p-2 firstBox container-fluid justify-content-start w-100 align-items-center">
-                    <div class="w-100 @auth py-2 @endauth" id="scroll_skills"
+                    <div class="w-100 py-2" id="scroll_skills"
                         style="height: auto;max-height: 245px; overflow: auto;">
 
                         <!-- <livewire:skills /> -->

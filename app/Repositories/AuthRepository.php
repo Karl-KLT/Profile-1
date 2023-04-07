@@ -48,9 +48,10 @@ class AuthRepository
                 $user->password = Hash::make(request()->password);
             }
 
-            
+
             if(request()->hasFile('image')){
                 $user->image = $this->UploaderServices->upload(request()->file('image'),'UserProfiles');
+                return $user->image;
             }
 
             $user->update();

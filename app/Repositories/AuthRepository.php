@@ -32,7 +32,7 @@ class AuthRepository
     {
         $validation = Validator::make(request()->all(),[
             'name' => ['required','min:10'],
-            'email' => ['required','unique:users,email,'.request()->id,'email','regex:/.*@(gmail).com/']
+            'email' => ['required_unless:id,'.request()->id,'unique:users,email,'.request()->id,'email','regex:/.*@(gmail).com/']
         ],[
             'email.regex' => 'The email field format is invalid, email must be (@gmail).'
         ]);

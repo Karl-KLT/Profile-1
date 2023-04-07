@@ -18,7 +18,7 @@ class UploaderServices
 
         // storage not stored fixed soon :)
         if (Storage::putFileAs($path,$file,$file_name)) {
-            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS')));
+            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS',1)));
         }
     }
 

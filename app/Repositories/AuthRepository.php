@@ -41,7 +41,7 @@ class AuthRepository
             return response()->json(['error'=>$validation->getMessageBag(),'message'=>'validation failed'],500);
         }
 
-        // try{
+        try{
             $user = User::updateOrCreate(['id'=>request()->id],request()->except('password','image'));
 
             if(request()->password){
@@ -59,9 +59,9 @@ class AuthRepository
             }
 
             return response()->json(['status'=>200,'message'=>'account has been created successfully']);
-        // }catch(Throwable $e){
-        //     return response()->json(['status'=>500,'message'=>'failed'],500);
-        // }
+        }catch(Throwable $e){
+            return response()->json(['status'=>500,'message'=>'failed'],500);
+        }
     }
 
     public function sendVerifyCode()

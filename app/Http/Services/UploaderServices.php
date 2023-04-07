@@ -14,10 +14,6 @@ class UploaderServices
         $date_path = date("Y") . '/' . date("m") . '/' . date("d") . '/';
         $path = '/assets/uploads/' . $folder . '/' . $date_path;
 
-        if (!File::exists($path)) {
-            File::makeDirectory($path, 0777, true);
-        }
-
         $file_name = date('YmdHis') . mt_rand() . '_' . $folder . '.' . $file->getClientOriginalExtension();
 
         if (Storage::putFileAs($path,$file,$file_name)) {

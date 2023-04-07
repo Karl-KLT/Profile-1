@@ -1,8 +1,6 @@
 <?php
 
-use App\Mail\sendVerifyCodeMail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

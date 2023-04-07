@@ -1,11 +1,6 @@
 <?php
 
-use App\Events\sendVerifyCodeEvent;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Services\UploaderServices;
 /*
 |--------------------------------------------------------------------------
 | API Routes

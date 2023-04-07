@@ -43,7 +43,10 @@
 
 
         <div class="w-100 mt-2  container-fluid">
-            <form @submit.prevent="save" class="flex">
+            <button type="button" @click="saveTemplate" :disabled="loading" class="btn btn-dark w-100">Add</button>
+            <!-- <form @submit.prevent="save" class="flex">
+
+
 
                 <div class="w-100">
                     <input type="text" placeholder="Name" :disabled="loading" v-model='name'  maxlength="12" class="form-control" id="">
@@ -59,7 +62,7 @@
                     </button>
                     <button v-else type="submit" :disabled="loading" class="btn btn-dark text-gray-900">Add</button>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 </template>
@@ -68,6 +71,7 @@
 
 <script>
     import { computed } from '@vue/reactivity'
+    import Swal from 'sweetalert2'
     import axios from 'axios'
     export default {
         name:'Skills',
@@ -79,7 +83,7 @@
                 name:null,
                 count:null,
 
-                loading:false,
+                loading: false,
 
             }
         },
@@ -97,27 +101,64 @@
                 })
             },
 
-            save(){
+            saveTemplate(){
                 this.loading = true;
-                axios.post('api/Skills/updateOrCreate',{
-                    name:this.name,
-                    count:this.count
-                },{headers:{'Authorization': 'bearer '+this.$store.state.token}}).then((res)=>{
-                    if(!this.User.Skills){
-                        this.User.Skills = [];
-                    }
-                    this.User.Skills.push(res.data.data)
-                    // restore values
-                    this.$emit('message',res.data)
-                    this.name = null;
-                    this.count = null;
-                    this.loading = false;
-                }).catch((err)=>{
-                    this.$emit('message',err.response.data)
-                    this.loading = false
-                })
-            }
-        },
 
+                Swal.fire({
+                    title:'add new skill',
+
+                    html:'<input id="name" type="text" placeholder="name" class="swal2-input">'+
+                    '<input id="expRatio" type="text" placeholder="expRatio" class="swal2-input">'+'<div id="errors"></div>',
+
+                    showConfirmButton:true,
+                    confirmButtonText:'save',
+
+                    showDenyButton:true,
+                    denyButtonText:'Close',
+
+                    preConfirm(){
+                        var name = document.getElementById('name').value
+                        var expRatio = document.getElementById('expRatio').value
+
+                        if(name != '' && expRatio != ''){
+                            return {
+                                name:name,
+                                count:expRatio
+                            }
+                        }else{
+                            document.getElementById('errors').innerHTML = '<div class="alert mt-3 alert-danger">fields is empty</div>'
+                            return false;
+                        }
+                    },
+                    preDeny(){return {name:null,count:null}}
+                })
+                .then((swal)=>{
+                    if(swal.value.name && swal.value.count){
+                        axios.post('api/Skills/updateOrCreate',{
+                            name:swal.value.name,
+                            count:swal.value.count
+                        },{headers:{'Authorization': 'bearer '+this.$store.state.token}}).then((res)=>{
+                            if(!this.User.Skills){
+                                this.User.Skills = [];
+                            }
+                            this.User.Skills.push(res.data.data)
+                            // restore values
+                            this.$emit('message',res.data)
+                            this.name = null;
+                            this.count = null;
+                            this.loading = false;
+                        }).catch((err)=>{
+                            this.$emit('message',err.response.data)
+                            this.loading = false
+                        })
+                    }else{
+                        this.loading = false
+                    }
+
+                })
+
+
+            }
+        }
     }
 </script>

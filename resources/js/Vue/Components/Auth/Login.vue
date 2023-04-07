@@ -40,12 +40,12 @@
                         </button>
 
                     </div>
+                </div>
 
-                    <!-- <a href="" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
-                        <div>
-                            SignUp
-                        </div>
-                    </a> -->
+                <div class="w-100 mt-3 alert alert-danger" v-if="Errors">
+                    <ul v-for="error in Errors" class="m-1">
+                        <li>- {{ error[0] }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -64,7 +64,10 @@
 
                 loading:false,
 
-                remember_me:false
+                remember_me:false,
+
+
+                Errors: null
             }
         },
 
@@ -79,12 +82,13 @@
                     if(this.remember_me){
                         this.$cookies.set('XSRF-TOKEN-REMEMBER-ME',res.data.access_token,res.data.expires_in)
                     }
-                    
+
                     this.$store.dispatch('setToken',res.data.access_token);
                     this.$store.dispatch('setAuth',true);
                     this.$router.push({name:'Home'})
                 }).catch((err)=>{
-                    console.log(err.response.data.error)
+                    this.Errors = err.response.data.error
+                    this.loading = false
                 })
                 // .catch((err)=>{console.log(err)})
 

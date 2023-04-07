@@ -21,8 +21,20 @@ class AuthRepository
 
     public function login()
     {
+        $validation = Validator::make(request()->all(),[
+            'email' => ['required','email','regex:/.*@(gmail).com/'],
+            'password' => ['required']
+        ],[
+            'email.regex' => 'The email field format is invalid, email must be (@gmail).'
+        ]);
+
+
+        if($validation->fails()){
+            return response()->json(['error'=>$validation->getMessageBag(),'message'=>'validation failed'],500);
+        }
+
         if (! $token = auth('api')->attempt(request()->only('email','password'))) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error'=>['Auth'=>['Unauthorized, check ur email and password']]], 401);
         }
 
         return $this->respondWithToken($token);

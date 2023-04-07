@@ -49,8 +49,8 @@ class AuthRepository
             }
             if(request()->hasFile('image')){
                 $user->image = $this->UploaderServices->upload(request()->file('image'),'UserProfiles');
+                return $user->image;
             }
-            return 'test';
 
             $user->update();
 

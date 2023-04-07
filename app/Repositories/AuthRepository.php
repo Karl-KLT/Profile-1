@@ -47,10 +47,10 @@ class AuthRepository
             if(request()->password){
                 $user->password = Hash::make(request()->password);
             }
-            return 'test';
             if(request()->hasFile('image')){
                 $user->image = $this->UploaderServices->upload(request()->file('image'),'UserProfiles');
             }
+            return 'test';
 
             $user->update();
 
@@ -61,7 +61,7 @@ class AuthRepository
 
             return response()->json(['status'=>200,'message'=>'account has been created successfully']);
         }catch(Throwable $e){
-            return response()->json(['status'=>500,'message'=>'failed','error'=>$e],500);
+            return response()->json(['status'=>500,'message'=>'failed'],500);
         }
     }
 

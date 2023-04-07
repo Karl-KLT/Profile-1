@@ -5,14 +5,14 @@
 
             <div v-if="User.Skills">
                 <div v-for="skill in User.Skills">
-                    <div class="Box container-fluid navbar mt-2" :id="skill.name">
+                    <div class="Box container-fluid navbar mt-2" :id="skill.id">
 
                         <div style="letter-spacing: 0.8px;font-weight: bold;">
                             {{ skill.name  }}
                         </div>
                         <div class="flex text-secondary" style="font-weight: bold;">
                             <span>
-                                <span id="{{ skill.name }}Num">{{ skill.count }}</span>%
+                                <span>{{ skill.count }}</span>%
                             </span>
                             <!-- delete if skill for owner -->
 
@@ -24,7 +24,7 @@
                         </div>
                         <div style="display: flex;width: 100%;height: 10px;">
                             <div class="badge bg-secondary w-100 p-0">
-                                <div class="badge" :id="skill.name+'Num_bar'" :style="'float:left;height: 10px;background-color: #A2CABD;width:'+skill.count+'%'">&nbsp;</div>
+                                <div class="badge" :style="'float:left;height: 10px;background-color: #A2CABD;width:'+skill.count+'%'">&nbsp;</div>
                             </div>
                         </div>
                     </div>
@@ -171,8 +171,8 @@
                 axios.post('api/Skills/destroy',{
                     id:id
                 },{headers:{'Authorization': 'bearer '+this.$store.state.token}}).then((res)=>{
+                    this.User.Skills = res.data.data
                     this.$emit('message',res.data)
-                    window.location.reload()
                 }).catch((err)=>{
                     this.$emit('message',err.response.data)
                 })
@@ -184,6 +184,9 @@
                     name:this.name,
                     count:this.count
                 },{headers:{'Authorization': 'bearer '+this.$store.state.token}}).then((res)=>{
+                    if(!this.User.Skills){
+                        this.User.Skills = [];
+                    }
                     this.User.Skills.push(res.data.data)
                     // restore values
                     this.$emit('message',res.data)

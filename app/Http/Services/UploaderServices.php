@@ -14,14 +14,16 @@ class UploaderServices
         $date_path = date("Y") . '/' . date("m") . '/' . date("d") . '/';
         $path = '/assets/uploads/' . $folder . '/' . $date_path;
 
-        // if (!File::exists($path)) {
-        //     File::makeDirectory($path, 0777, true);
-        // }
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0777, true);
+        }
+
         $file_name = date('YmdHis') . mt_rand() . '_' . $folder . '.' . $file->getClientOriginalExtension();
 
         if (Storage::putFileAs($path,$file,$file_name)) {
-            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addMinutes(env('MAX_MINUTES_FOR_PHOTOS')));
+            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS')));
         }
+        return 'test';
     }
 
     /**

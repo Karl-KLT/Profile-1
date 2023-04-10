@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function __construct(AuthService $AuthService)
     {
         $this->AuthService = $AuthService;
-        $this->middleware('auth:api', ['except' => ['login','updateOrCreate','sendVerifyCode','checkVerifyCode']]);
+        $this->middleware('auth:api', ['except' => ['login','updateOrCreate','sendVerifyCode','checkVerifyCode','visit']]);
     }
 
     public function login()
@@ -38,5 +38,10 @@ class AuthController extends Controller
     public function me()
     {
         return $this->AuthService->me();
+    }
+
+    public function visit()
+    {
+        return $this->AuthService->visit();
     }
 }

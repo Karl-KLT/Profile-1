@@ -27,5 +27,14 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('Hcode0110_Karl')
         ]);
+
+        // \App\Models\User::create([
+        //     'name' => 'mohamed khaled',
+        //     'email' => 'test@gmail.com',
+        //     'type' => UserType::SUPER_ADMIN,
+        //     'image' => null,
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('Hcode0110_Karl')
+        // ]);
     }
 }

@@ -25,6 +25,7 @@ class SkillsRepository
             return response()->json(['message'=>'validate error','error'=>$validation->getMessageBag(),'status'=>500],500);
         }
 
+
         try{
             $skill = User::find(auth('api')->user()->id)->skills()->updateOrCreate(['id'=>request()->id],request()->all());
 

@@ -9,7 +9,7 @@
 
                 <div class="nav_list">
 
-
+                    <!-- if not login -->
                     <router-link :to="{ name:'Home' }" title="Home" class="nav_link" active-class="active">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name" style="font-weight: bold">Home</span>
@@ -28,10 +28,17 @@
                         <span class="nav_name" style="font-weight: bold">Profile</span>
                     </router-link>
 
+                    <router-link :to="{ name:'Settings' }"  class="nav_link" title="Settings" active-class="active" style="cursor: pointer;" v-if="loggedIn">
+                        <i class='bx bx-cog'></i>
+                        <span class="nav_name" style="font-weight: bold">Settings</span>
+                    </router-link>
+
+                    <!-- to logout -->
                     <a  class="nav_link" title="lgoOut" @click="logOut" style="cursor: pointer;" v-if="loggedIn">
                         <i class='bx bxs-log-out'></i>
                         <span class="nav_name" style="font-weight: bold">logOut</span>
                     </a>
+
 
                 </div>
 

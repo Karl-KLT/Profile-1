@@ -18,12 +18,12 @@ if(env('APP_ENV') == 'production') {
     FacadesURL::forceScheme('https');
 }
 
-Route::get('/', function () {
+Route::get('/{vue_url?}', function () {
     return view('welcome');
-})->name('Home');
+})->name('Home')->where('vue_url','..*');
 
 // Route::get('/view_verificationEmail', function () {
 //     return new sendVerifyCodeMail('0000','Karl');
 // });
 
-Route::fallback(function(){return redirect(route('Home'));});
+// Route::fallback(function(){return redirect(route('Home'));});

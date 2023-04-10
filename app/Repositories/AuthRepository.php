@@ -130,6 +130,23 @@ class AuthRepository
         return response()->json(['data'=>auth('api')->user(),'status'=>200,'message'=>'successfully'],200);
     }
 
+    public function visit()
+    {
+        $validation = Validator::make(request()->all(),[
+            'user_code' => 'numeric',
+        ]);
+
+        if($validation->fails()){
+            return response()->json(['error'=>$validation->getMessageBag(),'message'=>'validation failed'],500);
+        }
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'successfully',
+            'User'=>User::all()->where('user_code',request()->user_code)->first()
+        ],200);
+    }
+
     public function refresh()
     {
         return $this->respondWithToken(auth('api')->refresh());

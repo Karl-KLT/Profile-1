@@ -4,7 +4,6 @@ use App\Constants\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
     /**
@@ -18,6 +17,7 @@ return new class extends Migration
             $table->longText('image')->nullable();
             $table->string('bio')->nullable();
             $table->string('message')->nullable();
+            $table->string('user_code')->default(random_int(00000000,99999999));
             $table->string('country')->nullable();
             $table->string('type')->default(UserType::CLIENT);
             $table->string('email')->unique();

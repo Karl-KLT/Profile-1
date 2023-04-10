@@ -37,4 +37,9 @@ class AuthService
     {
         return $this->AuthRepository->me();
     }
+
+    public function visit()
+    {
+        return $this->AuthRepository->visit();
+    }
 }

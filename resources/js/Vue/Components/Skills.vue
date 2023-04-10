@@ -14,7 +14,7 @@
                             </span>
                             <!-- delete if skill for owner -->
 
-                            <span class="ms-2">
+                            <span v-if="!visit" class="ms-2">
                                 <div @click="remove(skill.id)">
                                     <button type="submit" style="outline: none" class="hover:text-red-400"><i class='bx bxs-message-square-x'></i></button>
                                 </div>
@@ -42,27 +42,8 @@
 
 
 
-        <div class="w-100 mt-2  container-fluid">
+        <div v-if="!visit" class="w-100 mt-2  container-fluid">
             <button type="button" @click="saveTemplate" :disabled="loading" class="btn btn-dark w-100">Add</button>
-            <!-- <form @submit.prevent="save" class="flex">
-
-
-
-                <div class="w-100">
-                    <input type="text" placeholder="Name" :disabled="loading" v-model='name'  maxlength="12" class="form-control" id="">
-                </div>
-
-                <div class="w-25 mx-2">
-                    <input type="text" maxlength="3" :disabled="loading" placeholder="MaxNum" v-model='count' class="form-control" id="">
-                </div>
-
-                <div>
-                    <button v-if="loading" type="submit" :disabled="loading" class="btn btn-dark text-gray-900">
-                        <div class="spinner-border"></div>
-                    </button>
-                    <button v-else type="submit" :disabled="loading" class="btn btn-dark text-gray-900">Add</button>
-                </div>
-            </form> -->
         </div>
     </div>
 </template>
@@ -84,6 +65,8 @@
                 count:null,
 
                 loading: false,
+
+                visit:false
 
             }
         },
@@ -135,14 +118,16 @@
                 .then((swal)=>{
                     if(swal.value.name && swal.value.count){
                         axios.post('api/Skills/updateOrCreate',{
-                            name:swal.value.name,
+                            name:swal.value.name.toLowerCase(),
                             count:swal.value.count
                         },{headers:{'Authorization': 'bearer '+this.$store.state.token}}).then((res)=>{
+
                             if(!this.User.Skills){
                                 this.User.Skills = [];
                             }
+
                             this.User.Skills.push(res.data.data)
-                            // restore values
+
                             this.$emit('message',res.data)
                             this.name = null;
                             this.count = null;
@@ -158,6 +143,11 @@
                 })
 
 
+            }
+        },
+        beforeMount(){
+            if(this.$route.params.user_code){
+                this.visit = true
             }
         }
     }

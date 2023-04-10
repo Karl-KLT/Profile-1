@@ -22,6 +22,7 @@ Route::prefix('Auth')->group(function(){
 
     Route::post('/me','AuthController@me');
 
+    Route::post('/visit','AuthController@visit');
 
     Route::prefix('Verifications')->group(function(){
         Route::post('sendVerifyCode','AuthController@sendVerifyCode');

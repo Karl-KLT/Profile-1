@@ -72,9 +72,27 @@
             </div>
         </div>
 
-        <div v-else class="w-100 d-flex justify-content-center" style="font-size:21px">
-            <div class="justify-content-center badge bg-dark m-3 text-light">
+        <div v-else class="w-100">
+            <!-- <div class="justify-content-center badge bg-dark m-3 text-light">
                 something went wrong , user has not found
+            </div> -->
+            <div class="pt-3 font-bold">
+                <h4 style="text-decoration: underline;letter-spacing: 1px">Home</h4>
+            </div>
+            <div class="mt-1">
+                <div id="desc" class="mt-2 text-light container-fluid w-md-75 rounded" style="background: #CDE4DD;">
+
+                    <div class="container-fluid p-1 w-100 text-dark" style="letter-spacing: 0.5px;">
+
+                        <b style="text-decoration: underline;">Hi,</b><br>
+
+                        <p class="container-fluid text-secondary">
+                            customize ur profile and make friends on ProfileBank, <span class="fw-bold text-decoration-underline">please login to get start</span>
+                        </p>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -96,7 +114,18 @@
         },
 
         methods: {
-            getUser(){
+            getUser(user_code){
+                if(user_code){
+                    axios.post('/api/Auth/visit',{
+                        user_code:user_code
+                    }).then((res)=>{
+                        this.$store.dispatch('setUser',res.data.User)
+                    })
+                }else{
+                    this.$store.dispatch('setUser',null)
+                }
+
+
                 if(this.$cookies.get('XSRF-TOKEN-REMEMBER-ME')){
                     this.$store.dispatch('setToken',this.$cookies.get('XSRF-TOKEN-REMEMBER-ME'));
                     this.getRequest()
@@ -132,7 +161,7 @@
         },
 
         beforeMount(){
-            this.getUser()
+            this.getUser(this.$route.params.user_code)
         },
         components:{Skills}
     }

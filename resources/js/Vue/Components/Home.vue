@@ -123,15 +123,15 @@
                     })
                 }else{
                     this.$store.dispatch('setUser',null)
+                    if(this.$cookies.get('XSRF-TOKEN-REMEMBER-ME')){
+                        this.$store.dispatch('setToken',this.$cookies.get('XSRF-TOKEN-REMEMBER-ME'));
+                        this.getRequest()
+                    }else{
+                        this.getRequest()
+                    }
                 }
 
 
-                if(this.$cookies.get('XSRF-TOKEN-REMEMBER-ME')){
-                    this.$store.dispatch('setToken',this.$cookies.get('XSRF-TOKEN-REMEMBER-ME'));
-                    this.getRequest()
-                }else{
-                    this.getRequest()
-                }
             },
 
             getRequest(){

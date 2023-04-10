@@ -92,7 +92,7 @@
                             
                             <div style="letter-spacing: 0.8px;" class="fw-bold fs-5 profile-info-design">
                                 <div class="d-flex flex-column">
-                                    <span class="fs-4 profile-info-design ">{{ user.name }}</span>
+                                    <span class="fs-4 profile-info-design">{{ user.name }}</span>
                                     <span class="fs-6 d-flex align-items-center profile-info-design" v-if="user.country">
                                         <i class='bx bx-location-plus'></i>    
                                         {{ user.country }}
@@ -112,7 +112,7 @@
                     
                 </div>
             </div>
-            <div class="w-100 d-flex justify-content-center">
+            <div v-if="user.bio" class="w-100 d-flex justify-content-center">
                 <div class="w-50 d-flex justify-content-center">
                     <span class="fs-6 border-top py-4">{{ user.bio }}</span>
                 </div>

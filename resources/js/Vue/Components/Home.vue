@@ -101,9 +101,9 @@
                             </div>
                         
                         </div>
-                        <div class=" profile-info-design">
+                        <div v-if="!visit" class="profile-info-design">
                             <!-- btn for update profile -->
-                            <button class="btn btn-dark" @click="this.$router.push({name:'Profile'})">Edit profile</button>
+                            <button class="btn btn-dark"  @click="this.$router.push({name:'Profile'})">Edit profile</button>
                         </div>
                         <!-- <div>
                             awd
@@ -192,6 +192,8 @@
         data() {
             return {
                 user:computed(()=>this.$store.state.User),
+
+                visit:false
             }
         },
 
@@ -243,6 +245,9 @@
         },
 
         beforeMount(){
+            if(this.$route.params.user_code){
+                this.visit = true
+            }
             this.getUser(this.$route.params.user_code)
         },
         components:{Skills}

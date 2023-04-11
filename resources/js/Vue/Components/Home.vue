@@ -73,7 +73,7 @@
             <!-- new template -->
             <div class="w-100 d-flex flex-column justify-content-center">
                 <div class="w-100 d-flex justify-content-center">
-                    <div class="profile_cover_image">
+                    <div class="profile_cover_image" :style="'background-image: url('+(user.cover_image ?? 'https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5')+');'">
                         <!-- <div class="fw-bold fs-3 m-2">Soon</div> -->
                     </div>
                     <!-- <img id="cover_image" style="width: 50%;height: 350px;border-radius: 10px;" src="https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5"
@@ -122,7 +122,7 @@
                             </div>
 
                         </div>
-                        <div v-if="!visit" class="profile-info-design">
+                        <div v-if="!visit" class="profile-info-design-btn">
                             <!-- btn for update profile -->
                             <button class="btn btn-dark"  @click="this.$router.push({name:'Profile'})">Edit profile</button>
                         </div>
@@ -176,6 +176,13 @@
     .profile-info-design{
         margin: 5px;
     }
+    .profile-info-design-btn{
+        margin: 5px;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+    }
+
     .profile-info-design-badge{
         margin: 5px;
         display: flex;
@@ -185,7 +192,6 @@
         width: 50%;
         height: 350px;
         border-radius: 10px;
-        background-image: url('https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5');
         background-position: center;
 
         /* /////// full screen cover ////// */
@@ -223,6 +229,14 @@
             transform: translateY(-10px);
             justify-content: center;
         }
+
+        .profile-info-design-btn{
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .profile-info-design-badge{
             width: 100%;
             margin: 0px;
@@ -253,7 +267,7 @@
         },
 
         methods: {
-            getUser(user_code){
+            getUser(user_code = null){
                 if(user_code){
                     axios.post('/api/Auth/visit',{
                         user_code:user_code
@@ -300,11 +314,15 @@
         },
 
         beforeMount(){
+
             if(this.$route.params.user_code){
                 this.visit = true
             }
+
             this.getUser(this.$route.params.user_code)
         },
+
+
         components:{Skills}
     }
 </script>

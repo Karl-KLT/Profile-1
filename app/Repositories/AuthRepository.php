@@ -65,6 +65,10 @@ class AuthRepository
                 $user->image = $this->UploaderServices->upload(request()->file('image'),'UserProfiles');
             }
 
+            if(request()->hasFile('cover_image')){
+                $user->cover_image = $this->UploaderServices->upload(request()->file('cover_image'),'coverUserProfiles');
+            }
+
             $user->update();
 
 

@@ -74,7 +74,7 @@
             <div class="w-100 d-flex flex-column justify-content-center">
                 <div class="w-100 d-flex justify-content-center">
                     <div class="profile_cover_image">
-                        <div class="fw-bold fs-3 m-2">Soon</div>
+                        <!-- <div class="fw-bold fs-3 m-2">Soon</div> -->
                     </div>
                     <!-- <img id="cover_image" style="width: 50%;height: 350px;border-radius: 10px;" src="https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5"
                     alt="cover_image"> -->
@@ -107,7 +107,7 @@
                                                 <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
                                             </svg>
 
-                                            <svg title="admin" v-else-if="user.type == 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                                            <svg v-else-if="user.type == 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
                                                 <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
                                                 <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
                                             </svg>

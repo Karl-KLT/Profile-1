@@ -16,8 +16,15 @@ class UploaderServices
 
         $file_name = date('YmdHis') . mt_rand() . '_' . $folder . '.' . $file->getClientOriginalExtension();
 
-        if (Storage::putFileAs($path,$file,$file_name)) {
-            return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . '/' . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS',1)));
+        // s3 & local
+        if(env('FILESYSTEM_DISK') == 's3'){
+            if (Storage::putFileAs($path,$file,$file_name)) {
+                return Storage::temporaryUrl('/assets/uploads/' . $folder . '/' . $date_path . $file_name,now()->addDays(env('MAX_DAYS_FOR_PHOTOS',1)));
+            }
+        }
+
+        if ($file->move(public_path() . $path, $file_name)) {
+            return '/assets/uploads/' . $folder . '/' . $date_path . $file_name;
         }
     }
 

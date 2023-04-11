@@ -1,22 +1,25 @@
 <template>
     <div>
-        <div class="pt-3 font-bold">
-            <h4 style="text-decoration: underline;letter-spacing: 1px">Settings</h4>
-        </div>
+        <div v-if="Auth">
 
-
-
-        <div class="mt-1">
-            <div class="container-fluid">
-                <span class="text-decoration-underline fs-5">Profile link</span>
+            <div class="pt-3 font-bold">
+                <h4 style="text-decoration: underline;letter-spacing: 1px">Settings</h4>
             </div>
-            <div class="container-fluid">
-                <div>
-                    <input class="form-control" type="text" v-model="profileLink" readonly>
-                </div>
 
-                <div class="mt-2 w-100 d-flex justify-content-center">
-                    <button class="btn btn-secondary w-100" @click="copy">copy</button>
+
+
+            <div class="mt-1">
+                <div class="container-fluid">
+                    <span class="text-decoration-underline fs-5">Profile link</span>
+                </div>
+                <div class="container-fluid">
+                    <div>
+                        <input class="form-control" type="text" v-model="profileLink" readonly>
+                    </div>
+
+                    <div class="mt-2 w-100 d-flex justify-content-center">
+                        <button class="btn btn-secondary w-100" @click="copy">copy</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,8 +34,12 @@
 
         data() {
             return {
+                Auth:computed(()=>this.$store.state.authenticated),
+
                 User:computed(()=>this.$store.state.User),
+
                 link:location.origin,
+
                 profileLink:null
             }
         },
@@ -66,7 +73,11 @@
             }
         },
 
-        beforeMount(){
+        mounted() {
+            if(!this.Auth){
+                return this.$router.push({ name:'Home' })
+            }
+
             this.profileLink = this.link+'/'+this.User.user_code
         }
     }

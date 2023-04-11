@@ -267,10 +267,10 @@
         },
 
         methods: {
-            getUser(user_code = null){
-                if(user_code){
+            getUser(query = null){
+                if(query){
                     axios.post('/api/Auth/visit',{
-                        user_code:user_code
+                        user_code:query
                     }).then((res)=>{
                         this.$store.dispatch('setUser',res.data.User)
                     })
@@ -313,13 +313,13 @@
             }
         },
 
-        beforeMount(){
+        mounted(){
 
-            if(this.$route.params.user_code){
+            if(this.$route.params.query){
                 this.visit = true
             }
 
-            this.getUser(this.$route.params.user_code)
+            this.getUser(this.$route.params.query)
         },
 
 

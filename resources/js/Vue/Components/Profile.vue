@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row">
+        <div v-if="Auth" class="row">
 
 
 
@@ -416,6 +416,7 @@
         data() {
             return {
                 user:computed(()=>this.$store.state.User),
+                Auth:computed(()=>this.$store.state.authenticated),
                 loading:false,
 
                 previewImage:null,
@@ -437,7 +438,6 @@
                     inputAttributes:{class:'form-control'},
                     inputPlaceholder:column_name,
                 }).then((res)=>{
-                    console.log(this.user)
                     if(res.isConfirmed){
                         var value = res.value
 
@@ -451,7 +451,6 @@
                             case 'bio':
                                 this.user.bio = value
                                 break
-
                         }
 
                     }
@@ -521,6 +520,13 @@
                 this.messageFailed = null
             }
         },
+
+        mounted(){
+            if(!this.Auth){
+                return this.$router.push({ name:'Home' })
+            }
+        },
+
 
         components:{Skills},
 

@@ -15,7 +15,7 @@ var routes = [
         component: Home,
         children:[
             {
-                path: ':user_code',
+                path: ':query',
                 component: Home
             }
         ]

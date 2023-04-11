@@ -14,9 +14,9 @@
                 <input type="password" v-model="password" autocomplete="current-password" class="form-control" placeholder="Password . . ." required>
             </div>
 
-            <div class="mt-2">
+            <div>
                 <div class="flex justify-content-between align-items-center me-2">
-                    <div class="ms-2">
+                    <!-- <div class="ms-2">
                         <div class="d-flex form-check align-items-center">
                             <input v-model="remember_me" type="checkbox" class="form-check-input">
                             <b class="ms-1">
@@ -39,6 +39,37 @@
                             </div>
                         </button>
 
+                    </div> -->
+
+                    <div class="w-100">
+                        <span>
+                            <div class="d-flex form-check align-items-center my-2">
+                                <input v-model="remember_me" type="checkbox" class="form-check-input">
+                                <b class="ms-1">
+                                    Remember me
+                                </b>
+                            </div>
+                        </span>
+
+                        <button @click="Login" type="button" class="btn btn-outline-dark fw-bold w-100" style="letter-spacing: 1px">
+                            <div v-if="loading">
+                                <div class="spinner-border"></div>
+                            </div>
+                            <div v-else>
+                                SignIn
+                            </div>
+                        </button>
+
+                        <div class="d-flex justify-content-center my-2 align-items-center">
+                            <span style="background-color: gray;height: 5px;" class="rounded lines"></span>
+                            <span style="width: 5%;text-align: center;letter-spacing: 0.8px;" class="fw-bold">or</span>
+                            <span style="background-color: gray;height: 5px;" class="rounded lines"></span>
+                        </div>
+
+                        <RouterLink :to="{name:'CreateUser'}" type="button" class="btn btn-outline-dark fw-bold w-100" style="letter-spacing: 1px">
+                            CreateUser
+                        </RouterLink>
+
                     </div>
                 </div>
 
@@ -51,6 +82,17 @@
         </div>
     </div>
 </template>
+
+<style>
+    .lines{
+        width: 45%;
+    }
+    @media only screen and (max-width: 1150px){
+        .lines{
+            width: 50%;
+        }
+    }
+</style>
 
 <script>
     import axios from 'axios'

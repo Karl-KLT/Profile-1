@@ -18,16 +18,10 @@
                 <input type="password" v-model="password" autocomplete="off" class="form-control" placeholder="Password . . ." required>
             </div>
 
-            <!-- error messages -->
-            <div v-if="messageFailed" class="alert alert-danger my-2">
-                <ul v-for="message in messageFailed">
-                    <li>{{ message[0] }}</li>
-                </ul>
-            </div>
             <!-- ///////////////////// -->
-            <div class="mt-2 d-flex justify-content-end">
-                <div class="flex justify-content-between align-items-center me-2">
-                    <button @click="singUp" type="button" class="btn btn-outline-dark fw-bold" style="letter-spacing: 1px">
+            <div class="my-2">
+                <div class="w-100">
+                    <button @click="singUp" type="button" class="btn btn-outline-dark w-100 fw-bold" style="letter-spacing: 1px">
                         <div v-if="loading">
                             <div class="spinner-border"></div>
                         </div>
@@ -42,6 +36,13 @@
                         </div>
                     </a> -->
                 </div>
+            </div>
+
+            <!-- error messages -->
+            <div v-if="messageFailed" class="alert alert-danger">
+                <ul v-for="message in messageFailed">
+                    <li>{{ message[0] }}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -77,6 +78,9 @@
                 }).catch((err)=>{
                     this.messageFailed = err.response.data.error
                     this.loading = false
+                    setTimeout(() => {
+                        this.messageFailed = null
+                    }, 4000);
                 })
                 // .catch((err)=>{console.log(err)})
 

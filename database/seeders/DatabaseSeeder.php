@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'type' => UserType::SUPER_ADMIN,
             'message' => "Hello👋 , I appreciate that you are looking at my small site that I've made, anyway this is just an profile image of me just explaining about myself, and I hope that we will be friends.",
             'image' => null,
+            'user_code' => random_int(000000000000000000,999999999999999999),
             'email_verified_at' => now(),
             'password' => Hash::make('Hcode0110_Karl')
         ]);

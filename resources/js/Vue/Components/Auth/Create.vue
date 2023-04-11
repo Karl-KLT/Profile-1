@@ -76,6 +76,7 @@
                     this.loading = false
                     this.$router.push({name:'Login'})
                 }).catch((err)=>{
+                    console.log(err.response)
                     this.messageFailed = err.response.data.error
                     this.loading = false
                     setTimeout(() => {

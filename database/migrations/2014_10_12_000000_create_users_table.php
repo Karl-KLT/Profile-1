@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('cover_image')->nullable();
             $table->string('bio')->nullable();
             $table->string('message')->nullable();
-            $table->string('user_code')->default(random_int(000000000000000000,999999999999999999))->unique();
+            $table->string('user_code')->nullable();
             $table->string('country')->nullable();
             $table->string('type')->default(UserType::CLIENT);
             $table->string('email')->unique();

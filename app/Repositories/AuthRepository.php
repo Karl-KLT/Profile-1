@@ -54,12 +54,15 @@ class AuthRepository
         }
 
         try{
-            $user = User::updateOrCreate(['id'=>request()->id],request()->except('password','image'));
+            $user = User::updateOrCreate(['id'=>request()->id],request()->except('password','image','cover_image'));
 
             if(request()->password){
                 $user->password = Hash::make(request()->password);
             }
 
+            if(!$user->user_code){
+                $user->user_code = random_int(000000000000000000,999999999999999999);
+            }
 
             if(request()->hasFile('image')){
                 $user->image = $this->UploaderServices->upload(request()->file('image'),'UserProfiles');
@@ -78,7 +81,7 @@ class AuthRepository
 
             return response()->json(['status'=>200,'message'=>'account has been created successfully']);
         }catch(Throwable $e){
-            return response()->json(['status'=>500,'message'=>'failed'],500);
+            return response()->json(['status'=>500,'message'=>'failed','error'=>$e],500);
         }
     }
 

@@ -159,8 +159,11 @@
         border-radius: 10px;
         background-image: url('https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5');
         background-position: center;
+
+        /* /////// full screen cover ////// */
         background-repeat: no-repeat;
         background-size: cover;
+        /* /////////////////////////////// */
         display: flex;
         justify-content: end;
         align-items: end;

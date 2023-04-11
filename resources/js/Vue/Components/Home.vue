@@ -90,34 +90,30 @@
                             <div style="letter-spacing: 0.8px;" class="fw-bold fs-5 profile-info-design">
                                 <div class="d-flex flex-column">
                                     <span class="fs-4 profile-info-design">
-                                        <div title="superAdmin" class="d-flex" v-if="user.type != 0">
-                                            <div>
-                                                <div>
-                                                    <svg v-if="user.type == 2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
-                                                        <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
-                                                        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
-                                                    </svg>
-                                                    <svg v-if="user.type == 2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
-                                                        <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
-                                                        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
-                                                    </svg>
-
-                                                    <svg v-else-if="user.type == 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
-                                                        <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
-                                                        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                {{ user.name }}
-                                            </div>
-                                        </div>
-                                        
-                                        <div v-else>
+                                        <div>
                                             {{ user.name }}
                                         </div>
                                     </span>
+
+                                    <span class="w-100" v-if="user.type != 0">
+                                        <div class="profile-info-design-badge">
+                                            <svg title="superAdmin" v-if="user.type == 2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                                                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                                            </svg>
+
+                                            <svg title="superAdmin" v-if="user.type == 2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                                                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                                            </svg>
+
+                                            <svg title="admin" v-else-if="user.type == 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                                                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                                            </svg>
+                                        </div>
+                                    </span>
+
                                     <span class="fs-6 d-flex align-items-center profile-info-design" v-if="user.country">
                                         <i class='bx bx-location-plus'></i>
                                         {{ user.country }}
@@ -180,6 +176,11 @@
     .profile-info-design{
         margin: 5px;
     }
+    .profile-info-design-badge{
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+    }
     .profile_cover_image{
         width: 50%;
         height: 350px;
@@ -216,6 +217,13 @@
             justify-content: center;
         }
         .profile-info-design{
+            width: 100%;
+            margin: 0px;
+            display: flex;
+            transform: translateY(-10px);
+            justify-content: center;
+        }
+        .profile-info-design-badge{
             width: 100%;
             margin: 0px;
             display: flex;

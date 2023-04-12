@@ -51,11 +51,11 @@ var routes = [
         component: VerifyEmail
     },
 
-    {
-        path: '/Friends',
-        name: 'Friends',
-        component: Friends
-    }
+    // {
+    //     path: '/Friends',
+    //     name: 'Friends',
+    //     component: Friends
+    // }
 
 ]
 

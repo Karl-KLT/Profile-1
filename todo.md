@@ -6,6 +6,7 @@ create table for requests
 make ui for friends template in vue.js
 
 
-make delete account request for admin&superAdmin
+account  can be deleted after 12 days
+<!-- make delete account request for admin&superAdmin -->
 
-create delete or banned user for admin&superAdmin but admin can't delete SuperAdmin
+create banned user by admin & superAdmin but admin can't banned SuperAdmin

@@ -139,7 +139,7 @@ class AuthRepository
 
     public function destroy()
     {
-        if(User::find(auth('api')->user()->id)->first()->delete()){
+        if(User::find(auth('api')->user()->id)->delete()){
             response()->json(['status'=>200,'message'=>'successfully'],200);
         }
         response()->json(['status'=>200,'message'=>'failed'],200);

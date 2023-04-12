@@ -28,6 +28,11 @@
                         <span class="nav_name" style="font-weight: bold">Profile</span>
                     </router-link>
 
+                    <router-link :to="{ name:'Profile' }" title="Profile" class="nav_link" v-if="loggedIn" active-class="active">
+                        <i class='bx bxs-user-rectangle'></i>
+                        <span class="nav_name" style="font-weight: bold">Profile</span>
+                    </router-link>
+
                     <router-link :to="{ name:'Settings' }"  class="nav_link" title="Settings" active-class="active" style="cursor: pointer;" v-if="loggedIn">
                         <i class='bx bx-cog'></i>
                         <span class="nav_name" style="font-weight: bold">Settings</span>

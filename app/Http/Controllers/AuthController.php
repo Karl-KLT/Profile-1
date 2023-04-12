@@ -40,6 +40,11 @@ class AuthController extends Controller
         return $this->AuthService->me();
     }
 
+    public function destroy()
+    {
+        return $this->AuthService->destroy();
+    }
+
     public function visit()
     {
         return $this->AuthService->visit();

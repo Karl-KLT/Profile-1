@@ -137,6 +137,14 @@ class AuthRepository
         return response()->json(['data'=>auth('api')->user(),'status'=>200,'message'=>'successfully'],200);
     }
 
+    public function destroy()
+    {
+        if(User::find(auth('api')->user()->id)->first()->delete()){
+            response()->json(['status'=>200,'message'=>'successfully'],200);
+        }
+        response()->json(['status'=>200,'message'=>'failed'],200);
+    }
+
     public function visit()
     {
         $validation = Validator::make(request()->all(),[

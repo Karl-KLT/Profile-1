@@ -38,6 +38,11 @@ class AuthService
         return $this->AuthRepository->me();
     }
 
+    public function destroy()
+    {
+        return $this->AuthRepository->destroy();
+    }
+
     public function visit()
     {
         return $this->AuthRepository->visit();

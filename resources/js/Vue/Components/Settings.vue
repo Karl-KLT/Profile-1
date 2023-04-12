@@ -21,6 +21,12 @@
                         <button class="btn btn-secondary w-100" @click="copy">copy</button>
                     </div>
                 </div>
+
+                <hr>
+
+                <div class="w-100">
+                    <button class="btn btn-danger w-100" @click="deleteAccount">Delete account</button>
+                </div>
             </div>
         </div>
     </div>
@@ -29,6 +35,7 @@
 <script>
     import { computed } from '@vue/reactivity';
     import Swal from 'sweetalert2';
+    import axios from 'axios';
     export default {
         name: 'Settings',
 
@@ -70,6 +77,46 @@
                     })
                 })
 
+            },
+
+            deleteAccount(){
+                var user_code = this.User.user_code
+                var token = this.$store.state.token
+
+                Swal.fire({
+                    icon:'warning',
+                    text:`to delete ur account write ur code (${this.User.user_code})`,
+                    title:'delete account',
+                    input:'text',
+                    inputAttributes:{
+                        class:'form-control'
+                    },
+                    preConfirm(value){
+                        Swal.showLoading()
+                        if(value != ''){
+                            if(user_code == value){
+                                axios.post('/api/Auth/destroy',null,{
+                                    headers:{
+                                        'Authorization':'bearer '+token
+                                    }
+                                }).then(()=>{
+                                    return true
+                                })
+                            }else{
+                                Swal.showValidationMessage('code not correct, try again')
+                            }
+                        }else{
+                            Swal.showValidationMessage('input is empty')
+                        }
+                    }
+                }).then((res)=>{
+                    if(res.isConfirmed){
+                        this.$store.dispatch('setToken',null);
+                        this.$store.dispatch('setUser',null);
+                        this.$store.dispatch('setAuth',false);
+                        this.$router.push({name:'Home'})
+                    }
+                })
             }
         },
 

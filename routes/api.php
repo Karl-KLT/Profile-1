@@ -24,6 +24,8 @@ Route::prefix('Auth')->group(function(){
 
     Route::post('/visit','AuthController@visit');
 
+    Route::post('/destroy','AuthController@destroy');
+
     Route::prefix('Verifications')->group(function(){
         Route::post('sendVerifyCode','AuthController@sendVerifyCode');
 

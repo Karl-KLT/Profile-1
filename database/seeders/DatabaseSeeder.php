@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::create([
-            'name' => 'Karl Daniel',
+            'name' => 'Karl Daniel Dev',
             'email' => 'mohameddtrsuc9x@gmail.com',
             'bio' => 'ղօ օղҽ αskҽժ ตҽ αճօմԵ ตվ síԵմαԵíօղ✌️💔,𝖔𝖗 𝖆𝖘𝖐𝖊𝖉 𝖆𝖇𝖔𝖚𝖙 𝖒𝖊💔👍',
             'country' => 'egypt',
@@ -29,13 +29,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Hcode0110_Karl')
         ]);
 
-        // \App\Models\User::create([
-        //     'name' => 'mohamed khaled',
-        //     'email' => 'test@gmail.com',
-        //     'type' => UserType::SUPER_ADMIN,
-        //     'image' => null,
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('Hcode0110_Karl')
-        // ]);
+
+        \App\Models\User::factory(5)->create();
     }
 }

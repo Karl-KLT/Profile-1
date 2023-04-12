@@ -33,7 +33,7 @@
 
                             <div class="d-flex w-100 justify-content-center">
 
-                                <div class="d-flex justify-content-between mt-2 w-50">
+                                <div class="btn-form mt-2 w-50">
 
                                     <button class="btn btn-dark btnRC" :disabled="counterForCode" @click="sendCode">{{ firstVerificationCodeHasSended ? 'Send' : 'Resend'}} code</button>
 
@@ -66,12 +66,22 @@
     @import 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css';
 
     .btnRC,.btnCE{
-        font-size: 15px;
+        /* font-size: 15px; */
     }
 
-    @media screen and (max-width:578px){
+    .btn-form{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media only screen and (max-width: 1150px){
+
         .btnRC,.btnCE{
-            font-size: 12px;
+            margin: 5px;
+        }
+
+        .btn-form{
+            flex-direction: column;
         }
     }
 

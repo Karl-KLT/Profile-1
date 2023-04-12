@@ -22,7 +22,9 @@
                     </div>
                 </div>
 
-                <hr>
+                <div class="my-2 w-100">
+                    <hr>
+                </div>
 
                 <div class="w-100">
                     <button class="btn btn-danger w-100" @click="deleteAccount">Delete account</button>

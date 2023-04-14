@@ -8,7 +8,7 @@
 
 
                 <div class="d-flex justify-content-center">
-                        <div class="profile_cover_image d-flex" :style="'background-image: url('+(previewCoverImage ?? user.cover_image ?? 'https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5')+');'">
+                        <div class="profile_cover_image d-flex" :style="'background-image: url('+(previewCoverImage ?? user.cover_image ?? 'cover.jpg')+');'">
                             <div>
                                 <button @click="selectPhoto(true)" title="Edit cover photo" class="m-2 btn btn-dark d-flex align-items-center">
                                     <div class="me-1">

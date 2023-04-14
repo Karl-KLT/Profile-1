@@ -73,7 +73,7 @@
             <!-- new template -->
             <div class="w-100 d-flex flex-column justify-content-center">
                 <div class="w-100 d-flex justify-content-center">
-                    <div class="profile_cover_image" :style="'background-image: url('+(user.cover_image ?? 'https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5')+');'">
+                    <div class="profile_cover_image" :style="'background-image: url('+(user.cover_image ?? 'cover.jpg')+');'">
                         <!-- <div class="fw-bold fs-3 m-2">Soon</div> -->
                     </div>
                     <!-- <img id="cover_image" style="width: 50%;height: 350px;border-radius: 10px;" src="https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/330447781_1405703233572120_9193100482535445812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ApSrzf1dLy0AX8Pp-Xp&_nc_ht=scontent.fcai19-1.fna&oh=00_AfDeWr-HAYdLXg5DTkUAmwylrsIBllX0uxqraE4GyUSIbg&oe=64387AF5"

@@ -6,7 +6,7 @@ import Create from '../Components/Auth/Create.vue'
 import Profile from '../Components/Profile.vue'
 import VerifyEmail from '../Components/Auth/VerificationEmails/VerifyEmail.vue'
 import Settings from '../Components/Settings.vue'
-import Friends from '../Components/Friends.vue'
+    
 var routes = [
 
     {
@@ -49,13 +49,7 @@ var routes = [
         path: '/VerifyEmail',
         name: 'VerifyEmail',
         component: VerifyEmail
-    },
-
-    // {
-    //     path: '/Friends',
-    //     name: 'Friends',
-    //     component: Friends
-    // }
+    }
 
 ]
 

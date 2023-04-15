@@ -323,7 +323,7 @@
             return {
                 user:computed(()=>this.$store.state.User),
 
-                contacts:false
+                contacts:false,
                 visit:false
             }
         },

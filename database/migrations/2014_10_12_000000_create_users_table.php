@@ -17,6 +17,17 @@ return new class extends Migration
             $table->longText('image')->nullable();
             $table->longText('cover_image')->nullable();
             $table->string('bio')->nullable();
+
+            // contact info
+            $table->mediumText('phoneNumber')->nullable();
+            $table->mediumText('facebook')->nullable();
+            $table->mediumText('instagram')->nullable();
+            $table->mediumText('twitter')->nullable();
+            $table->mediumText('linkedIn')->nullable();
+            $table->mediumText('website')->nullable();
+            $table->mediumText('location')->nullable();
+            // end contact info
+
             $table->string('message')->nullable();
             $table->string('user_code')->nullable();
             $table->string('country')->nullable();

@@ -2,9 +2,94 @@
     <div>
         <div v-if="Auth">
 
-            <div class="pt-3 font-bold">
-                <h4 style="text-decoration: underline;letter-spacing: 1px">Settings</h4>
+            <div class="pt-3">
+                <h4 style="text-decoration: underline;letter-spacing: 1px" class="fw-bold">Settings</h4>
             </div>
+
+
+
+
+
+
+            <!-- contact info -->
+            <div class="my-1">
+                <div class="container-fluid">
+                    <span class="text-decoration-underline fs-5">contact info</span>
+                </div>
+
+
+
+
+                <div class="container-fluid">
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-phoneNumber</span>
+                        <div>
+                            <input type="text" name="" v-model="User.phoneNumber" placeholder="phoneNumber url . . . " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-facebook</span>
+                        <div>
+                            <input type="text" name="" v-model="User.facebook" placeholder="facebook url . . . " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-instagram</span>
+                        <div>
+                            <input type="text" name="" v-model="User.instagram" placeholder="instagram url . . . " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-twitter</span>
+                        <div>
+                            <input type="text" name="" v-model="User.twitter" placeholder="twitter url . . . " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-linkedIn</span>
+                        <div>
+                            <input type="text" name="" v-model="User.linkedIn" placeholder="linkedIn url . . . " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-location</span>
+                        <div>
+                            <input type="text" name="" v-model="User.location" placeholder="location url . . . " class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="container-fluid my-2">
+                        <span class="text-decoration-underline fs-5">-website</span>
+                        <div>
+                            <input type="text" name="" v-model="User.website" placeholder="website url . . . " class="form-control">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+
+                <div class="w-100 container-fluid my-3">
+                    <button type="submit" class="btn btn-secondary w-100" @click="save">save</button>
+                </div>
+
+            </div>
+            <!-- end contact info -->
+
+
 
 
 
@@ -26,7 +111,7 @@
                     <hr>
                 </div>
 
-                <div class="w-100">
+                <div class="w-100 mb-3">
                     <button class="btn btn-danger w-100" @click="deleteAccount">Delete account</button>
                 </div>
             </div>
@@ -48,12 +133,43 @@
                 User:computed(()=>this.$store.state.User),
 
                 link:location.origin,
-
                 profileLink:null
             }
         },
 
         methods: {
+
+            save(){
+
+                // save contacts
+
+
+                // end save contacts
+
+
+                // axios apis
+
+                axios.post('/api/Auth/updateOrCreate',this.User,{
+                    headers:{
+                        'Content-Type':'multipart/form-data',
+                    }
+                }).then((res)=>{
+                    Swal.fire({
+                        icon:'success',
+                        title:res.data.message+'.',
+                    })
+                }).catch((err)=>{
+                    Swal.fire({
+                        icon:'error',
+                        title:'smth went wrong.',
+                    })
+                })
+
+                // end axios apis
+
+
+            },
+
             copy(){
                 const Toast = Swal.mixin({
                     toast: true,
@@ -123,6 +239,7 @@
         },
 
         mounted() {
+
             if(!this.Auth){
                 return this.$router.push({ name:'Home' })
             }

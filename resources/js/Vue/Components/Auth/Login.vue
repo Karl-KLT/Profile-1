@@ -132,7 +132,6 @@
                     this.Errors = err.response.data.error
                     this.loading = false
                 })
-                // .catch((err)=>{console.log(err)})
 
             }
         }

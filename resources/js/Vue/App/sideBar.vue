@@ -51,6 +51,7 @@
 
 <script>
     import { computed } from '@vue/reactivity';
+    import Swal from 'sweetalert2';
 
     export default {
         name:'sideBar',
@@ -63,11 +64,28 @@
 
         methods: {
             logOut(){
-                this.$cookies.remove('XSRF-TOKEN-REMEMBER-ME')
-                this.$store.state.token = null
-                this.$store.state.User = null
-                this.$store.state.authenticated = false
-                this.$router.push({name:'Home'})
+                Swal.fire({
+                    icon:'warning',
+                    title:'r u sure?',
+
+                    // confirm button
+                    showConfirmButton:true,
+                    confirmButtonText:'Yes',
+                    // //////////////////
+                    
+                    // deny button
+                    showDenyButton:true,
+                    denyButtonText:'close'
+                    // ////////////////
+                }).then((res)=>{
+                    if(res.isConfirmed){
+                        this.$cookies.remove('XSRF-TOKEN-REMEMBER-ME')
+                        this.$store.state.token = null
+                        this.$store.state.User = null
+                        this.$store.state.authenticated = false
+                        this.$router.push({name:'Home'})
+                    }
+                })
             }
         },
 

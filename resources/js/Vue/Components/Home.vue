@@ -383,7 +383,7 @@
                 this.user.twitter ||
                 this.user.instagram ||
                 this.user.website ||
-                this.user.facebook ||
+                this.user.facebook
             ){this.contacts = true}
 
             if(this.$route.params.query){

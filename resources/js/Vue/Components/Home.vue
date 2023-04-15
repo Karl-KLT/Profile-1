@@ -136,7 +136,7 @@
                     <span class="fs-6 border-top py-4">{{ user.bio }}</span>
                 </div>
             </div>
-            <div class="mb-2" v-if="contacts">
+            <div class="mb-2" v-if="user.phoneNumber || user.location || user.linkedIn || user.twitter || user.instagram || user.website || user.facebook">
                 <div class="container-fluid">
                     <span class="text-decoration-underline fs-5">contact info</span>
                 </div>
@@ -323,7 +323,6 @@
             return {
                 user:computed(()=>this.$store.state.User),
 
-                contacts:false,
                 visit:false
             }
         },
@@ -376,15 +375,6 @@
         },
 
         mounted(){
-            if(
-                this.user.phoneNumber ||
-                this.user.location ||
-                this.user.linkedIn ||
-                this.user.twitter ||
-                this.user.instagram ||
-                this.user.website ||
-                this.user.facebook
-            ){this.contacts = true}
 
             if(this.$route.params.query){
                 this.visit = true
